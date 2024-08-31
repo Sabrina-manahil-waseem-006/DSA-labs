@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+void binary_search(int arr[]) {
+    int i = 0, j = 4; bool found = false; int target, mid, index;
+    cout <<endl<< "Enter integer to be targeted: "; cin >> target;
+    while (i <= j) {
+        mid = (i + j) / 2;
+        if (arr[mid] == target) {
+            found = true; index = mid;break;}
+        else if (target < arr[mid]) {j = mid - 1; }
+        else { i = mid + 1;} }
+    if (found) {
+        cout << "Your integer is at index: " << index << endl; }
+    else {
+        cout << "Error 404! 'Not found'" << endl;}}
+int main() {
+    int nums[5];
+    for (int i = 0; i < 5; i++) {
+        cout << "enter input for array:  ";
+        cin >> nums[i];
+    }cout << endl<<"SORTED ARRAY: "<<endl;
+ //sorting array   
+    for (int i = 0; i < 5; i++) {
+        for (int j = i + 1; j < 5; j++) {
+            if (nums[i] > nums[j]) {
+                int temp = nums[i];
+                nums[i] = nums[j];
+                nums[j] = temp;}}}
+    for (int i = 0; i < 5; i++) { cout << nums[i]<<"  "; }
+    binary_search(nums);
+    return 0;
+}
