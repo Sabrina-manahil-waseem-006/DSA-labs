@@ -1,0 +1,73 @@
+//A palindrome is a word, phrase, number, or another sequence of characters that reads the same
+backward and forwards. Can you determine if a given string, s,is a palindrome? Write a Program
+using stack for checking whether a string is palindrome or not.. 
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Sabrina_lab03 {
+private:
+    int top;
+    char* stack;
+    static const int max = 25;
+
+public:
+    // Constructor
+    Sabrina_lab03() {
+        top = -1;
+        stack = new char[max];
+    }
+    // Function to display 
+    void display() {
+        cout << endl;
+        for (int i = 0; i <= top; i++) {
+            cout << stack[i] << "  ";
+        }
+    }
+    // Push 
+    void push(char item) {
+        if (top > max) {
+            cout << "stack overflow";
+        }
+        stack[++top] = item;
+    }
+
+    // Pop 
+    char pop() {
+        if (top < 0) {
+            cout << "Stack underflow";
+
+        }
+        return stack[top--];
+    }
+    void is_palindrome(string original, string reversed) {
+        if (original == reversed) { cout << endl << "given string is a palindrome"; }
+        else { cout << endl << "given string is not a palindrome"; }
+    }
+};
+
+int main() {
+    // Creating an object of my class
+    Sabrina_lab03 s1;
+    string phrase;
+    string reversed; 
+
+    cout << "Enter any phrase: ";
+    getline(cin, phrase);
+
+    // Pushing elements of the phrase into the stack
+    for (char ch : phrase) {
+        s1.push(ch);
+    }
+
+    // Popping elements from the stack and storing in the reversed string
+    for (int i = 0; i < phrase.length(); i++) {
+        reversed += s1.pop(); 
+    }
+
+    cout << endl << "Reversed phrase: " << reversed << endl;
+    s1.is_palindrome(phrase, reversed);
+
+    return 0;
+}
