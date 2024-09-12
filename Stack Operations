@@ -1,0 +1,117 @@
+//TASK 1: Implement a simple stack using an array in C++. Define a class Stack with basic operations:
+push(), pop(), peek(), and isEmpty(). Allow the stack to hold integer values. Implement error handling for stack overflow and underflow. Add a function size() to return the current size of the stack. Implement a display() function to print all the elements of the stack. Update the stack to dynamically adjust in size when full..  
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Sabrina_lab03 {
+private:
+    int top;
+    int* stack;
+    static const int max = 15;
+
+public:
+    // Constructor
+    Sabrina_lab03() {
+        top = -1;
+        stack = new int[max];
+    }
+
+    // Function to get the size of the stack
+    void size() {
+        cout << endl << "Size of stack is: " << (top + 1);
+    }
+
+    // Function to display the stack
+    void display() {
+        cout << endl;
+        for (int i = 0; i <= top; i++) {
+            cout << stack[i] << "  ";
+        }
+    }
+
+    // Push function to add an element to the stack
+    void push(int item) {
+        if (top >= max - 1) {
+            cout << "Stack overflow";
+        }
+        else {
+            top = top + 1;
+            stack[top] = item;
+        }
+    }
+
+    // Pop function to remove the top element
+    void pop() {
+        int item;
+        if (top < 0) {
+            cout << "Stack underflow";
+        }
+        else {
+           item = stack[--top] ;
+            
+        }
+    }
+
+    // Peek function to get the top element
+    void peek() {
+        if (top >= 0) {
+            cout << endl << "Peek element in your stack is: " << stack[top];
+        }
+        else {
+            cout << "Stack is empty.";
+        }
+    }
+
+    // Function to check if the stack is empty
+    void isempty() {
+        if (top == -1) {
+            cout << endl << "Stack is empty.";
+        }
+        else {
+            cout << endl << "Stack is not empty.";
+        }
+    }
+// resizing dynamically
+    void resize() {
+        cout << endl << "Resizing the stack...";
+        int* newStack = new int[max * 2]; // Double the capacity
+        for (int i = 0; i <= top; i++) {
+            newStack[i] = stack[i]; // Copy elements to the new array
+        }
+        int max;//overwrite the max variable as it was static declared
+        delete[] stack; // Free the old memory
+        stack = newStack;
+        max = max * 2;
+    }
+};
+
+int main() {
+    // Creating an object of my class
+    Sabrina_lab03 s1;
+    int x, y, z;
+    cout << "Enter any three elements to be added to the stack: ";
+    cin >> x >> y >> z;
+
+    s1.push(x);
+    s1.push(y);
+    s1.push(z);
+    s1.display();    cout << endl;
+    cout << endl << "After pushing three elements in stack ";
+    s1.size();   cout << endl;
+    s1.pop();    cout << endl;
+    cout << endl << "After popping one element from stack ";
+    s1.size();
+    s1.display();
+    cout << endl;
+
+    s1.peek();
+    cout << endl;
+
+    s1.pop();
+    s1.pop();
+    s1.isempty();
+
+    return 0;
+}
